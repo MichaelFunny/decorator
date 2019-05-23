@@ -1,0 +1,32 @@
+package sample;
+
+
+public class Main{
+    public static void main(String[] args){
+        PrinterInterface printer = new Decorator1(new Decorator("hi"));
+        printer.print();
+
+
+    }
+}
+interface PrinterInterface{
+    void print();
+}
+
+class Decorator implements PrinterInterface{
+    String value;
+    public Decorator(String value) {this.value = value;}
+    public void print(){
+        System.out.print(value);
+    }
+}
+
+class Decorator1 implements PrinterInterface{
+    PrinterInterface component;
+    public Decorator1(PrinterInterface component) {this.component = component;}
+    public void print(){
+        System.out.print("<em>");
+        component.print();
+        System.out.print("<\\html>");
+    }
+}
